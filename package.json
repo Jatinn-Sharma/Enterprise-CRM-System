@@ -1,0 +1,12 @@
+{
+  "name": "enterprise-crm-system",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "build": "echo 'Vercel will use vercel.json builds array'"
+  }
+}
