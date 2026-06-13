@@ -20,7 +20,7 @@ const Tasks = () => {
     const fetchTasks = async () => {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const { data } = await axios.get('http://localhost:5000/api/tasks', config);
+        const { data } = await axios.get('/api/tasks', config);
         setTasks(data);
       } catch (error) {
         console.error('Error fetching tasks:', error);
@@ -44,7 +44,7 @@ const Tasks = () => {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
       // Ensure we don't send an empty assignedTo if not supported, but user.id is safe
       const taskData = { ...newTask, assignedTo: user.id };
-      const { data } = await axios.post('http://localhost:5000/api/tasks', taskData, config);
+      const { data } = await axios.post('/api/tasks', taskData, config);
       
       setTasks([...tasks, data]);
       setShowModal(false);

@@ -32,7 +32,7 @@ const TopNav = () => {
 
   useEffect(() => {
     if (user) {
-      axios.get('http://localhost:5000/api/notifications', {
+      axios.get('/api/notifications', {
         headers: { Authorization: `Bearer ${user.token}` }
       }).then(res => setNotifications(res.data)).catch(console.error);
     }
@@ -41,7 +41,7 @@ const TopNav = () => {
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
       if (searchQuery.trim().length > 0) {
-        axios.get(`http://localhost:5000/api/search?q=${searchQuery}`, {
+        axios.get(`/api/search?q=${searchQuery}`, {
           headers: { Authorization: `Bearer ${user.token}` }
         }).then(res => {
           setSearchResults(res.data);
@@ -57,7 +57,7 @@ const TopNav = () => {
 
   const markAsRead = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/notifications/${id}/read`, {}, {
+      await axios.put(`/api/notifications/${id}/read`, {}, {
         headers: { Authorization: `Bearer ${user.token}` }
       });
       setNotifications(notifications.map(n => n.id === id ? { ...n, isRead: true } : n));

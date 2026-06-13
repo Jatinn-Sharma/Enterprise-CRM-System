@@ -11,7 +11,7 @@ const Activities = () => {
     const fetchActivities = async () => {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const { data } = await axios.get('http://localhost:5000/api/activities', config);
+        const { data } = await axios.get('/api/activities', config);
         setActivities(data);
       } catch (error) {
         console.error('Error fetching activities:', error);

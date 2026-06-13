@@ -20,7 +20,7 @@ const Users = () => {
   const fetchUsers = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await axios.get('http://localhost:5000/api/users', config);
+      const { data } = await axios.get('/api/users', config);
       setUsers(data);
     } catch (error) {
       console.error('Error fetching users:', error);
@@ -40,7 +40,7 @@ const Users = () => {
     setIsSubmitting(true);
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.put(`http://localhost:5000/api/users/${editUser.id}`, formData, config);
+      await axios.put(`/api/users/${editUser.id}`, formData, config);
       closeModal();
       fetchUsers();
     } catch (error) {
@@ -55,7 +55,7 @@ const Users = () => {
     if (window.confirm('Are you sure you want to delete this user? This cannot be undone.')) {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        await axios.delete(`http://localhost:5000/api/users/${id}`, config);
+        await axios.delete(`/api/users/${id}`, config);
         fetchUsers();
       } catch (error) {
         console.error('Error deleting user:', error);

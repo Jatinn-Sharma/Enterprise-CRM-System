@@ -37,7 +37,7 @@ const Dashboard = () => {
     const fetchStats = async () => {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const { data } = await axios.get('http://localhost:5000/api/dashboard/stats', config);
+        const { data } = await axios.get('/api/dashboard/stats', config);
         setStats(data);
       } catch (error) {
         console.error(error);

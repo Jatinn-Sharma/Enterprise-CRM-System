@@ -29,7 +29,7 @@ const Leads = () => {
     const fetchLeads = async () => {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const { data } = await axios.get('http://localhost:5000/api/leads', config);
+        const { data } = await axios.get('/api/leads', config);
         setLeads(data);
       } catch (error) {
         console.error('Error fetching leads:', error);
@@ -42,7 +42,7 @@ const Leads = () => {
     if (window.confirm('Are you sure you want to delete this lead?')) {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        await axios.delete(`http://localhost:5000/api/leads/${id}`, config);
+        await axios.delete(`/api/leads/${id}`, config);
         setLeads(leads.filter(lead => lead.id !== id));
       } catch (error) {
         console.error('Error deleting lead:', error);
@@ -63,7 +63,7 @@ const Leads = () => {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
       // Omit joined fields and id to avoid Supabase errors during update
       const { assignedTo, created_at, id, ...updateData } = editingLead;
-      const { data } = await axios.put(`http://localhost:5000/api/leads/${editingLead.id}`, updateData, config);
+      const { data } = await axios.put(`/api/leads/${editingLead.id}`, updateData, config);
       
       // Preserve joined fields in the local state update
       setLeads(leads.map(lead => lead.id === editingLead.id ? { ...lead, ...data } : lead));
@@ -83,7 +83,7 @@ const Leads = () => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
       const leadData = { ...newLead, assignedTo: user.id };
-      const { data } = await axios.post('http://localhost:5000/api/leads', leadData, config);
+      const { data } = await axios.post('/api/leads', leadData, config);
       setLeads([...leads, data]);
       setShowAddModal(false);
       setNewLead({

@@ -22,7 +22,7 @@ const Customers = () => {
   const fetchCustomers = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await axios.get('http://localhost:5000/api/customers', config);
+      const { data } = await axios.get('/api/customers', config);
       setCustomers(data);
     } catch (error) {
       console.error('Error fetching customers:', error);
@@ -44,9 +44,9 @@ const Customers = () => {
       };
 
       if (editId) {
-        await axios.put(`http://localhost:5000/api/customers/${editId}`, payload, config);
+        await axios.put(`/api/customers/${editId}`, payload, config);
       } else {
-        await axios.post('http://localhost:5000/api/customers', payload, config);
+        await axios.post('/api/customers', payload, config);
       }
       
       closeModal();
@@ -63,7 +63,7 @@ const Customers = () => {
     if (window.confirm('Are you sure you want to delete this customer?')) {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        await axios.delete(`http://localhost:5000/api/customers/${id}`, config);
+        await axios.delete(`/api/customers/${id}`, config);
         fetchCustomers();
       } catch (error) {
         console.error('Error deleting customer:', error);
