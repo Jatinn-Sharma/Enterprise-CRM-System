@@ -1,0 +1,77 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #2563EB;
+  --color-primary-hover: #1D4ED8;
+  --color-sidebar: #0F172A;
+  --color-sidebar-hover: #1E293B;
+  
+  --color-bg-light: #F7F6F3; /* Soft cream/dim background */
+  --color-card-light: #FCFCFA; /* Off-white card to reduce harsh brightness */
+  --color-text-primary-light: #1E293B;
+  --color-text-secondary-light: #64748B;
+  --color-border-light: #EAE8E1; /* Warmer border to match creme theme */
+  
+  --color-dark-bg: #0B0F19;
+  --color-dark-card: #111827;
+  --color-dark-text: #F8FAFC;
+  --color-text-secondary-dark: #94A3B8;
+  --color-dark-border: #1F2937;
+
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--color-bg-light)] text-[var(--color-text-primary-light)] antialiased font-sans transition-colors duration-300;
+  }
+  
+  .dark body {
+    @apply bg-[var(--color-dark-bg)] text-[var(--color-dark-text)];
+  }
+}
+
+@layer components {
+  /* Premium Card Design */
+  .card {
+    @apply bg-[var(--color-card-light)] dark:bg-[var(--color-dark-card)] rounded-[16px] shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.2)] border border-[var(--color-border-light)] dark:border-[var(--color-dark-border)] p-6 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+  
+  /* Primary Button */
+  .btn-primary {
+    @apply bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white font-medium py-2.5 px-5 rounded-lg transition-all duration-200 focus:ring-4 focus:ring-blue-500/30 outline-none flex items-center justify-center;
+  }
+
+  /* Secondary Outline Button */
+  .btn-secondary {
+    @apply bg-transparent border border-[var(--color-border-light)] dark:border-[var(--color-dark-border)] hover:bg-gray-50 dark:hover:bg-gray-800 text-[var(--color-text-primary-light)] dark:text-[var(--color-dark-text)] font-medium py-2.5 px-5 rounded-lg transition-all duration-200 outline-none flex items-center justify-center;
+  }
+
+  /* Modern Input Fields */
+  .input-field {
+    @apply w-full px-4 py-2.5 bg-white dark:bg-[var(--color-dark-card)] border border-[var(--color-border-light)] dark:border-[var(--color-dark-border)] rounded-lg focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent outline-none transition-all duration-200 dark:text-white placeholder-gray-400 dark:placeholder-gray-500;
+  }
+
+  /* Clean Labels */
+  .label {
+    @apply block text-sm font-semibold text-[var(--color-text-primary-light)] dark:text-[var(--color-text-secondary-dark)] mb-1.5;
+  }
+  
+  /* Modern Enterprise Tables */
+  .table-header {
+    @apply px-6 py-4 text-left text-xs font-bold text-[var(--color-text-secondary-light)] dark:text-[var(--color-text-secondary-dark)] uppercase tracking-wider border-b border-[var(--color-border-light)] dark:border-[var(--color-dark-border)] bg-gray-50/50 dark:bg-[#111827]/50;
+  }
+  
+  .table-cell {
+    @apply px-6 py-4 whitespace-nowrap text-sm border-b border-[var(--color-border-light)] dark:border-[var(--color-dark-border)];
+  }
+  
+  .table-row {
+    @apply hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-150;
+  }
+}
